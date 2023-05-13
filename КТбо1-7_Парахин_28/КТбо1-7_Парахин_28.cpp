@@ -10,6 +10,7 @@
 using namespace std;
 
 int createPrintFunctionValue(int x, int y);
+void printRecursionScheme();
 
 int main()
 {
@@ -17,8 +18,12 @@ int main()
 
     int flag = 1;
     do {
+        printRecursionScheme();
 
-        createPrintFunctionValue(3,2);
+        int argx1, argx2;
+        cout << endl << "Введите входные данные х1 и х2 для вычисления: ";
+        cin >> argx1 >> argx2;
+        createPrintFunctionValue(argx1,argx2);
 
         cout << endl << "Хотите ввести входные данные заново или выйти из программы? (1 - Ввести входные данные заново, 0 - Выйти из программы) : ";
         cin >> flag;
@@ -34,14 +39,21 @@ int main()
 }
 
 int createPrintFunctionValue(int x, int y) {
-    int answer;
+    int answer, previous;
     if (x == 0) {
         answer = 0;
+        cout << "f(" << x << "," << y << ") = g(" << x << ") = " << answer << endl;
     }
     else {
-        answer = (x - 1)*(x - 1) + createPrintFunctionValue(x-1, y) + y;
+        previous = createPrintFunctionValue(x - 1, y);
+        answer = (x - 1) * (x - 1) + previous + y;
+        cout << "f(" << x << "," << y << ") = h(" << x - 1 << ",f(" << x - 1 << "," << y << ")," << y << ") = h(" << x - 1 << "," << previous << "," << y << ") = " << answer << endl;
     }
-
-    cout << answer << endl;
     return answer;
+}
+
+void printRecursionScheme() {
+    cout << "Схема рекурсии:" << endl
+         <<"{ f(0,x) = g(x) = 0" << endl
+         << "{ f(y+1,x) = h(y,f(y,x),x) = y*y + f(y,x) + x" << endl << endl;
 }
