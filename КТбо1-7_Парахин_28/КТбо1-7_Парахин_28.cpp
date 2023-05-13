@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 
+
 int createPrintFunctionValue(int x, int y);
 void printRecursionScheme();
 
@@ -21,8 +22,9 @@ int main()
         printRecursionScheme();
 
         int argx1, argx2;
-        cout << endl << "Введите входные данные х1 и х2 для вычисления: ";
+        cout << "Введите входные данные х1 и х2 для вычисления: ";
         cin >> argx1 >> argx2;
+        cout << endl;
         createPrintFunctionValue(argx1,argx2);
 
         cout << endl << "Хотите ввести входные данные заново или выйти из программы? (1 - Ввести входные данные заново, 0 - Выйти из программы) : ";
