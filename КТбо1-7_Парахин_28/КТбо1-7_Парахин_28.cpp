@@ -41,6 +41,7 @@ int createPrintFunctionValue(int x, int y) {
     else {
         answer = (x - 1)*(x - 1) + createPrintFunctionValue(x-1, y) + y;
     }
+
     cout << answer << endl;
     return answer;
 }
