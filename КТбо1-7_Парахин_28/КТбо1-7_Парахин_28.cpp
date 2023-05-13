@@ -9,8 +9,24 @@
 #include <iostream>
 using namespace std;
 
-
+// Функция реализации примитивно-рекурсивной функции.
+// Функция получает на вход два значения х1 и х2 и реализует рекурсивной вычисление функции с выводом на каждом шаге рекурсии
+// от 0 до x1 на экран строки, иллюстрирующей вычисление, вида: f(1, 2) = h(0, f(0, 2), 2) = h(0, 1, 2) = 5
+//
+// Входные данные: 
+//      x1 - первый аргумент функции.
+//      x2 - второй аргумент функции.
+// Выходные данные: 
+//      answer - значение рекурсивной функции для входных параметров х1 и х2. 
 int createPrintFunctionValue(int x, int y);
+
+// Функция для вывода схемы рекурсии.
+// Функция выводит схему примитивно-рекурсивной функции.
+// 
+// Входные данные: 
+//      Нет входных данных.
+// Выходные данные: 
+//      Нет, так как функция типа void.
 void printRecursionScheme();
 
 int main()
@@ -25,11 +41,13 @@ int main()
         cout << "Введите входные данные х1 и х2 для вычисления: ";
         cin >> argx1 >> argx2;
         cout << endl;
+
         createPrintFunctionValue(argx1,argx2);
 
         cout << endl << "Хотите ввести входные данные заново или выйти из программы? (1 - Ввести входные данные заново, 0 - Выйти из программы) : ";
         cin >> flag;
         cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
+
         if (flag != 1 && flag != 0) {
             cout << "Введена неизвестная операция. Доступные операции: 1 или 0." << endl;
             break;
@@ -40,22 +58,22 @@ int main()
     return 0;
 }
 
-int createPrintFunctionValue(int x, int y) {
+int createPrintFunctionValue(int x1, int x2) {
     int answer, previous;
-    if (x == 0) {
+    if (x1 == 0) {
         answer = 0;
-        cout << "f(" << x << "," << y << ") = g(" << x << ") = " << answer << endl;
+        cout << "f(" << x1 << "," << x2 << ") = g(" << x1 << ") = " << answer << endl;
     }
     else {
-        previous = createPrintFunctionValue(x - 1, y);
-        answer = (x - 1) * (x - 1) + previous + y;
-        cout << "f(" << x << "," << y << ") = h(" << x - 1 << ",f(" << x - 1 << "," << y << ")," << y << ") = h(" << x - 1 << "," << previous << "," << y << ") = " << answer << endl;
+        previous = createPrintFunctionValue(x1 - 1, x2);
+        answer = (x1 - 1) * (x1 - 1) + previous + x2;
+        cout << "f(" << x1 << "," << x2 << ") = h(" << x1 - 1 << ",f(" << x1 - 1 << "," << x2 << ")," << x2 << ") = h(" << x1 - 1 << "," << previous << "," << x2 << ") = " << answer << endl;
     }
     return answer;
 }
 
 void printRecursionScheme() {
     cout << "Схема рекурсии:" << endl
-         <<"{ f(0,x) = g(x) = 0" << endl
+         << "{ f(0,x) = g(x) = 0" << endl
          << "{ f(y+1,x) = h(y,f(y,x),x) = y*y + f(y,x) + x" << endl << endl;
 }
