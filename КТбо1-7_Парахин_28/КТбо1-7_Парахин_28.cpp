@@ -9,12 +9,17 @@
 #include <iostream>
 using namespace std;
 
+int createFunctionValue(int x, int y);
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
     int flag = 1;
     do {
+
+
+        createFunctionValue(3,2);
 
         cout << endl << "Хотите ввести входные данные заново или выйти из программы? (1 - Ввести входные данные заново, 0 - Выйти из программы) : ";
         cin >> flag;
@@ -27,4 +32,16 @@ int main()
 
     cout << "Вы вышли из программы." << endl;
     return 0;
+}
+
+int createPrintFunctionValue(int x, int y) {
+    int answer;
+    if (x == 0) {
+        answer = 0;
+    }
+    else {
+        answer = (x - 1)*(x - 1) + createFunctionValue(x-1, y) + y;
+    }
+    cout << answer << endl;
+    return answer;
 }
